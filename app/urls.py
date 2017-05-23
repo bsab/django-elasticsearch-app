@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     # Gestione staff
-    url(r'^staff/', include('dea.staff.urls')),
+    url(r'^staff/', include('app.staff.urls')),
     url(r'^elastic-connection-error/', TemplateView.as_view(template_name='elastic_connection_error.html')),
 
 ]

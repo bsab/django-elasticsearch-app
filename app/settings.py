@@ -75,7 +75,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     #
-    'dea.staff',
+    'app.staff',
     'django_pygments',
 ]
 
@@ -90,7 +90,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'dea.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
     {
@@ -109,7 +109,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'dea.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 
 # Password validation

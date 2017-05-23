@@ -1,6 +1,6 @@
 from django.conf.urls import  url
 #from django.views.generic.base import TemplateView
-from dea.staff.operators import dea_overview, dea_execute_query
+from app.staff.operators import dea_overview, dea_execute_query
 
 
 urlpatterns = [  

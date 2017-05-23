@@ -18,7 +18,7 @@ from pygments import highlight
 from pygments.lexers import JsonLexer
 from pygments.formatters import HtmlFormatter
 
-from dea.decorators import check_elastic_status
+from app.decorators import check_elastic_status
 from inputs import AutoQuery, Exact, Clean
 
 """
