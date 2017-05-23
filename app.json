@@ -1,0 +1,6 @@
+{
+  "name": "DEA (Django-Elasticsearch-App)",
+  "description": "DEA (Django-Elasticsearch-App) is a lightweight app that connect to a local o a remote Elasticsearch node and show an editor to set your query.",
+  "repository": "https://github.com/bsab/django-elasticsearch-app.git",
+  "keywords": ["python", "django", "elasticsearch"]
+}
