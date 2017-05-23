@@ -1,0 +1,164 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>DEA - Django Elasticsearch App</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="https://getbootstrap.com/examples/sticky-footer/sticky-footer.css" rel="stylesheet">
+    <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+            </li>
+            <li>
+                <a id="overview-link" href="/staff/overview">Overview</a>
+            </li>
+            <li>
+                <a href="/staff">Run Query</a>
+            </li>
+
+            <li>
+                <a href="https://elasticsearch-dsl.readthedocs.io/en/latest/">Elasticsearch DSL</a>
+            </li>
+
+        </ul>
+
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+            <div class="row" id="main-block">
+                <div class="col-lg-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                        </div>
+                        <div class="portlet-body">
+                            <h3>Fill out the form below to define your query, then click <b>Run</b> to preview the results. For example:</h3>
+                            <label>{"query": {"match_all": {}}}</label>
+                            <textarea class="form-control" rows="3" id="input_query"></textarea>
+                            <div class="actions">
+                                <div class="btn-group btn-group-devided" data-toggle="buttons">
+
+                                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Run</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="query_results" class="portlet-body" style="margin-top: 20px;overflow-y:scroll;height:700px">
+                        <!-- POPOLATO CON AJAX -->
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<!-- /#wrapper -->
+
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+<script>
+
+    function run_query_elastisearch(){
+        console.log($("#input_query").val());
+
+        $.ajax({
+            type: "GET",
+            url: "/staff/",
+            data:{
+                query: $("#input_query").val()
+            },
+            success: function(response){
+                //console.log(response)
+                $("#query_results").html(response)
+            },
+
+            error: function(response){
+                console.log(response)
+                alert(response.responseText);
+            }
+        });//end ajax
+    }// end function
+
+    $("#wrapper").toggleClass("toggled");
+
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        run_query_elastisearch();
+    });
+
+    $("#overview-link").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "/staff/overview",
+            success: function(response){
+                console.log(response)
+                var index_name = response[0]
+                var index_info = response[1]
+
+                $("#main-block").html("<div class='jumbotron'> <h1>Index: " + index_name + "</h1>");
+
+                for (var key in index_info) {
+                    if (index_info.hasOwnProperty(key)) {
+                        var content = '<h2>' + (key + ": " + index_info[key]) + '</h2>';
+                        $("#main-block").append(content);
+                    }
+                }
+                $("#main-block").append("</div>");
+            },
+
+            error: function(response){
+                console.log(response)
+                alert("ERROR");
+            }
+        });//end ajax
+    });
+</script>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted"><a href="https://about.me/the_sab"><img alt="@bsab" class="avatar" src="https://avatars3.githubusercontent.com/u/9799799?v=3&amp;s=40" height="20" width="20">Sab Severino</a></p>
+    </div>
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Sab Severino">
+
+    <title>DEA - Django Elasticsearch App</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="https://getbootstrap.com/examples/sticky-footer/sticky-footer.css" rel="stylesheet">
+    <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <div class="hero-unit center">
+                <h1><font face="Tahoma" color="red">Elastic Search Connection Error </font></h1>
+                <br />
+                <p>Connection refused means just that, that the TCP connection to the Elasticsearch HTTP service was refused. The reason can be a number of things, for instance that you are using the wrong host or port for the HTTP endpoint, or that the elasticsearch node is not running for some reason.</p>
+                <a href="/staff" class="btn btn-large btn-info"><i class="icon-home icon-white"></i> Retry</a>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted"><a href="https://about.me/the_sab"><img alt="@bsab" class="avatar" src="https://avatars3.githubusercontent.com/u/9799799?v=3&amp;s=40" height="20" width="20">Sab Severino</a></p>
+    </div>
+</footer>
+
+</body>
+
+</html>
